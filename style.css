@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(160, 8, 8, 0.5);
+    font-family: 'PingFangSC', 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: crosshair;
+}
+
+.container {
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.container h1 {
+    font-size: 3em;
+    color:yellow;
+    margin-bottom: 20px;
+}
+
+.container p {
+    font-size: 1.5em;
+    opacity: 0.9;
+}
+
+
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.particle {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 10px currentColor;
+    animation: glow 0.6s ease-out;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+        opacity: 1;
+    }
+    100% {
+        box-shadow: 0 0 5px currentColor;
+        opacity: 0;
+    }
+}
+
+blockquote {
+    color: gray;
+    margin-left: 16px;
+    margin-right: 16px;
+    padding: 0 16px;
+    border-left: 3px grey solid;
+}
+
+
+a:link {
+    color: royalblue;
+}
+
+a:visited {
+    color: royalblue;
+}
+
+a:hover {
+    color: rgb(88, 180, 255);
+
+}
+
+a:active {
+    color: rgb(103, 187, 255);
+}
