@@ -86,3 +86,37 @@ a:hover {
 a:active {
     color: rgb(103, 187, 255);
 }
+
+.autoplay-fallback {
+    position: fixed;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.363);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    z-index: 9999;
+}
+.autoplay-fallback.hidden {
+    display: none;
+}
+.play-button {
+    background-color: rgb(255, 69, 0);
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.play-button:active {
+    transform: translateY(1px);
+}
+.play-hint {
+    font-size: 13px;
+    opacity: 0.95;
+}

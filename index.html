@@ -10,6 +10,10 @@
 
 <body>
     <audio id="bgm" src="music.mp3" autoplay loop></audio>
+    <div id="autoplay-fallback" class="autoplay-fallback hidden">
+        <button id="playButton" class="play-button">点击播放音乐</button>
+        <div class="play-hint">如果浏览器阻止了自动播放，请点击此处开始音乐</div>
+    </div>
     <div class="container">
         <h1>Happy New Year！ | 2026</h1>
         <p>点击屏幕有惊喜哦<br><br></p>
@@ -92,7 +96,7 @@
     <script>
         (function () {
             function onDevtoolsAttempt(reason) {
-                alert('还是补药用开发者工具逆向页面了，想要看源码就请去https://github.com/maixzzh/Happy-New-Year-2026啊 (￣▽￣)~* \n\n悄悄告诉你，连续按F12是可以突破防御的'); 
+                alert('还是补药用开发者工具逆向页面了，想要看源码就请去https://github.com/maixzzh/Happy-New-Year-2026啊 (￣▽￣)~* \n\n悄悄告诉你，连续按F12是可以突破防御的');
             }
 
             document.addEventListener('keydown', function (e) {
@@ -115,6 +119,50 @@
             document.addEventListener('contextmenu', function (e) {
                 e.preventDefault();
                 onDevtoolsAttempt('contextmenu');
+            });
+        })();
+        (function () {
+            const audio = document.getElementById('bgm');
+            const fallback = document.getElementById('autoplay-fallback');
+            const playBtn = document.getElementById('playButton');
+
+            function showFallback() {
+                fallback.classList.remove('hidden');
+            }
+
+            function hideFallback() {
+                fallback.classList.add('hidden');
+            }
+            function tryAutoplay() {                
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        hideFallback();
+                    }).catch((error) => {
+                        // 自动播放被阻止
+                        showFallback();
+                    });
+                }
+            }
+
+            playBtn.addEventListener('click', async function (e) {
+                e.stopPropagation();
+                try {
+                    audio.muted = false;
+                    await audio.play();
+                    hideFallback();
+                } catch (err) {
+                    alert('无法播放音频，请检查浏览器设置并允许页面播放声音。');
+                }
+            });
+
+            window.addEventListener('load', function () {
+                tryAutoplay();
+            });
+
+            document.addEventListener('click', function onFirstClick() {
+                tryAutoplay();
+                document.removeEventListener('click', onFirstClick);
             });
         })();
     </script>
