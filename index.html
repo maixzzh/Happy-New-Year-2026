@@ -10,14 +10,16 @@
 
 <body>
     <audio id="bgm" src="music.mp3" autoplay loop></audio>
-    <div id="autoplay-fallback" class="autoplay-fallback hidden">
-        <button id="playButton" class="play-button">点击播放音乐</button>
-        <div class="play-hint">如果浏览器阻止了自动播放，请点击此处开始音乐</div>
-    </div>
+
     <div class="container">
+        <div id="autoplay-fallback" class="autoplay-fallback hidden">
+            <button id="playButton" class="play-button">点击播放音乐</button>
+            <div class="play-hint">如果浏览器阻止了自动播放，请点击此处开始音乐</div>
+        </div>
         <h1>Happy New Year！ | 2026</h1>
         <p>点击屏幕有惊喜哦<br><br></p>
-        <p style="font-size: 17px;">make by 张麦轩（<a href="https://space.bilibili.com/1512804294">@MaxZ</a>）<br>Tips：本网页会播放音频，如果没听到声音请检查浏览器设置</p>
+        <p style="font-size: 17px;">make by 张麦轩（<a
+                href="https://space.bilibili.com/1512804294">@MaxZ</a>）<br>Tips：本网页会播放音频，如果没听到声音请检查浏览器设置</p>
     </div>
 
     <script>
@@ -52,7 +54,7 @@
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-                this.speedY += 0.98; 
+                this.speedY += 0.98;
                 this.life -= this.decay;
 
                 this.element.style.left = this.x + 'px';
@@ -73,7 +75,7 @@
         function createFireworks(e) {
             const x = e.clientX;
             const y = e.clientY;
-            const particleCount = Math.random() * 80 + 30; // 20-50个粒子
+            const particleCount = Math.random() * 30 + 20; // 20-50个粒子
 
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle(x, y));
@@ -133,7 +135,7 @@
             function hideFallback() {
                 fallback.classList.add('hidden');
             }
-            function tryAutoplay() {                
+            function tryAutoplay() {
                 const playPromise = audio.play();
                 if (playPromise !== undefined) {
                     playPromise.then(() => {
